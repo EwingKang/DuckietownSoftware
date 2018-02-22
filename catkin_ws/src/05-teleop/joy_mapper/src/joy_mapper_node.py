@@ -17,10 +17,10 @@ class JoyMapper(object):
         self.last_pub_time = rospy.Time.now()
 
         # Setup Parameters
-        self.v_gain = self.setupParam("~speed_gain", 0.41)
-        self.omega_gain = self.setupParam("~steer_gain", 8.3)
+        self.v_gain = self.setupParam("~speed_gain", 0.1)
+        self.omega_gain = self.setupParam("~steer_gain", 1)
         self.bicycle_kinematics = self.setupParam("~bicycle_kinematics", 0)
-        self.steer_angle_gain = self.setupParam("~steer_angle_gain", 1)
+        self.steer_angle_gain = self.setupParam("~steer_angle_gain", 0.3)
         self.simulated_vehicle_length = self.setupParam("~simulated_vehicle_length", 0.18)
 
         # Publications
@@ -69,11 +69,11 @@ class JoyMapper(object):
         if self.bicycle_kinematics:
             # Implements Bicycle Kinematics - Nonholonomic Kinematics
             # see https://inst.eecs.berkeley.edu/~ee192/sp13/pdf/steer-control.pdf
-            steering_angle = self.joy.axes[3] * self.steer_angle_gain
+            steering_angle = self.joy.axes[0] * self.steer_angle_gain
             car_cmd_msg.omega = car_cmd_msg.v / self.simulated_vehicle_length * math.tan(steering_angle)
         else:
             # Holonomic Kinematics for Normal Driving
-            car_cmd_msg.omega = self.joy.axes[3] * self.omega_gain
+            car_cmd_msg.omega = self.joy.axes[0] * self.omega_gain
         self.pub_car_cmd.publish(car_cmd_msg)
 
 # Button List index of joy.buttons array:
