@@ -47,7 +47,7 @@
     </include>
 
     <!-- Wheels Driver -->
-    <include file="$(find dagu_car)/launch/wheels_driver_node.launch">
+    <include file="$(find dagu_car)/launch/wheels_driver_ew_node.launch">
         <arg name="veh" value="$(arg veh)"/>
     </include>
 
