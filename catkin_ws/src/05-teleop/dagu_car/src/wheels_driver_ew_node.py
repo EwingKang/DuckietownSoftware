@@ -32,13 +32,7 @@ class WheelsDriverNode(object):
     def cbWheelsCmd(self,msg):
         if self.estop:
             self.driver.setWheelsSpeed(left=0.0,right=0.0)
-<<<<<<< HEAD
-            self.msg_encoder.x = 0
-            self.msg_encoder.y = 0
-            self.pub_encoder_msg.publish(self.msg_encoder)
-=======
             self.pub_encoder_msg.publish() # publish zero
->>>>>>> refs/remotes/origin/master
             return
         self.driver.setWheelsSpeed(left=msg.vel_left,right=msg.vel_right)
         # Put the wheel commands in a message and publish
