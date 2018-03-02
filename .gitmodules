@@ -1,3 +1,6 @@
 [submodule "catkin_ws/src/serial_odom"]
 	path = catkin_ws/src/serial_odom
 	url = git@github.com:EwingKang/Simple-ROS-Arduino-odometry.git
+[submodule "catkin_ws/src/scan_tools"]
+	path = catkin_ws/src/scan_tools
+	url = git@github.com:EwingKang/scan_tools.git
